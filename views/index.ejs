@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>\
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <form action="/delete" method="post" enctype="multipart/form-data">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên môn học</th>
+                        <th>Loại môn học</th>
+                        <th>Học kỳ</th>
+                        <th>Khoa</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(item=> {%>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.course_type %></td>
+                            <!-- <td><%= item.semester %></td> -->
+                            <td><img alt="Match" src="<%= item.semester %>"></td>
+                            <td><%= item.department %></td>
+                            <td>
+                                <!-- <form action="/delete" method="post" enctype="multipart/form-data">
+                                    <input type="text" hidden="true" name="idd" value="<%= item.id %>">
+                                    <input type="submit" value="Delete">                                
+                                </form> -->
+                                <input type="checkbox" name="idd" value="<%= item.id %>">
+                            </td>
+                        </tr>
+                        <% });%>
+                </tbody>
+            </table>
+            <button type="submit" value="Xoa">Delete</button>
+        </form>
+
+        <div>
+            <form action="/save" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+                <input type="text" name="name" placeholder="name" value="CTDL" class="btn">
+                <input type="text" name="course_type" placeholder="course_type" value="base">
+                <!-- <input type="text" name="semester" placeholder="semester"> -->
+                <input type="file" name="semester">
+                <input type="text" name="department" placeholder="department" value="IT">
+                <button type="submit" value="Them">Add</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
